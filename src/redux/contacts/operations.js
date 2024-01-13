@@ -21,7 +21,7 @@ axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
             try {
                 const response = await axios.post('/contacts', {
                 name: name,
-                phone: number,
+                number: number,
                 });
                 return response.data;
             } catch (error) {

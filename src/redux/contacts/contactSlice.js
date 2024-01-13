@@ -13,7 +13,7 @@ const contactsSlice = createSlice({
                 state.push(action.payload);
             })
             .addCase(deleteAsyncContact.fulfilled, (state, action) => {
-                return state.filter(contact => contact.id !== action.payload);
+                return state.filter(contact => contact.id !== action.payload.id);
             });
         },
     });

@@ -20,8 +20,12 @@ export const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const handleDeleteClick = (contactId) => {
-    dispatch(deleteAsyncContact(contactId));
+  const handleDeleteClick = contactId => {
+    try {
+      dispatch(deleteAsyncContact(contactId));
+    } catch (error) {
+      console.error('Error deleting contact:', error.message);
+    }
   };
 
   return (
@@ -30,7 +34,7 @@ export const ContactList = () => {
       <ul className={css.contacts__list}>
         {filteredContacts.map((contact) => (
           <li className={css.contacts__item} key={JSON.stringify(contact)}>
-            {contact.name} : {contact.phone}{' '}
+            {contact.name} : {contact.number}{' '}
             <button onClick={() => handleDeleteClick(contact.id)}>
               Delete
             </button>
