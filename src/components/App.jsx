@@ -6,6 +6,7 @@ import { useAuth } from '../redux/auth/useAuth';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { UserMenu } from './userMenu/UserMenu';
+import { Box } from "@chakra-ui/react";
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
@@ -24,6 +25,7 @@ export const App = () => {
     <h1>Loading...</h1>
   ) : (
     <>
+    <Box bg="gray.100" h="100%">
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<UserMenu />}>
@@ -59,6 +61,7 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
+      </Box>
     </>
   );
 };

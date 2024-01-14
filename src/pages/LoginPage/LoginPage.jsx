@@ -1,7 +1,8 @@
 import LoginForm from "components/LoginForm/LoginForm";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Container, Center, Box, Heading, Text } from '@chakra-ui/react';
-import { NavLink } from 'react-router-dom';
+import { Flex, Box, Heading, Text, Link as ChakraLink } from '@chakra-ui/react';
+
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 export default function LoginPage() {
     return (
@@ -10,17 +11,20 @@ export default function LoginPage() {
                 <title>Login</title>
                 <meta name="description" content="Login" />
             </Helmet>
-            <Container maxW="container.lg">
-                <Center>
-                    <Box w="100%" p={4} my={12} borderWidth="1px" borderRadius="lg" overflow="hidden">
-                        <Heading as="h1" size="lg" textAlign="center" mb={8}>Login</Heading>
-                        <LoginForm />
-                        <Text mt={4} textAlign="center">
-                            Don't have an account? <NavLink to="/register">Register</NavLink>
-                        </Text>
-                    </Box>
-                </Center>
-            </Container>
+            <Flex minHeight="100vh" alignItems="center" justifyContent="center" mt={-32}>
+                <Box p={8} borderWidth="1px" borderRadius="lg" overflow="hidden" bg="white">
+                    <Heading as="h1" size="lg" textAlign="center" mb={8}>
+                    Login
+                    </Heading>
+                    <LoginForm />
+                    <Text mt={4} textAlign="center">
+                    Don't have an account?{' '}
+                    <ChakraLink as={ReactRouterLink} to="/register" textDecoration="underline" color="blue.500">
+                        Register
+                    </ChakraLink>
+                    </Text>
+                </Box>
+            </Flex>
         </HelmetProvider>
     );
 }

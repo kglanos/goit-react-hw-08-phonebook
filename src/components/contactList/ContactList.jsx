@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import css from './ContactList.module.css';
 import { fetchContacts, deleteAsyncContact } from '../../redux/contacts/operations';
 import { selectContacts, selectFilterValue } from '../../redux/contacts/selectors';
+import { Box, Button, Heading, List, ListItem } from "@chakra-ui/react";
+
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -29,18 +31,29 @@ export const ContactList = () => {
   };
 
   return (
-    <div className={css.contacts}>
-      <h2>Contacts</h2>
-      <ul className={css.contacts__list}>
+    <Box mt={6}>
+      <Heading as="h2" fontSize="2xl"mt={4}>
+        Contacts
+      </Heading>
+      <List className={css.contacts__list} mt={2}>
         {filteredContacts.map((contact) => (
-          <li className={css.contacts__item} key={JSON.stringify(contact)}>
+          <ListItem className={css.contacts__item} key={JSON.stringify(contact)} mb={2}>
             {contact.name} : {contact.number}{' '}
-            <button onClick={() => handleDeleteClick(contact.id)}>
+            <Button colorScheme="blue"
+                    size="lg"
+                    ml = {4}
+                    borderRadius="md"
+                    p="2"
+                    w="120px"
+                    _hover={{
+                        bgGradient: 'linear(to-r, red.500, yellow.500)',
+                    }}
+                    bgGradient="linear(to-r, blue.500, orange.500)" onClick={() => handleDeleteClick(contact.id)}>
               Delete
-            </button>
-          </li>
+            </Button>
+          </ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Box>
   );
 };

@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
+import { Box, Button, Input, FormControl, FormLabel } from "@chakra-ui/react";
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
 
-    const handleRegistration  = (e) => {
+    const handleRegistration = (e) => {
         e.preventDefault();
         const name = e.target.username.value;
         const email = e.target.email.value;
@@ -13,25 +14,37 @@ const RegisterForm = () => {
     };
 
     return (
-        <div>
+        <Box maxW="400px" mx="auto">
             <form onSubmit={handleRegistration}>
-                <label htmlFor="username">Username</label>
-                <input id="username" name="username" />
-                <label htmlFor="email">Email</label>
-                <input id="email" name="email" type="email" />
-                <label htmlFor="password">Password</label>
-                <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="off"
-                />
-
-                <button type="submit">Register</button>
+                <FormControl id="username" mb={4}>
+                    <FormLabel>Username</FormLabel>
+                    <Input type="text" name="username" />
+                </FormControl>
+                <FormControl id="email" mb={4}>
+                    <FormLabel>Email</FormLabel>
+                    <Input type="email" name="email" />
+                </FormControl>
+                <FormControl id="password" mb={4}>
+                    <FormLabel>Password</FormLabel>
+                    <Input type="password" name="password" autoComplete="off" />
+                </FormControl>
+                <Button
+                    type="submit"
+                    colorScheme="blue"
+                    size="lg"
+                    w="100%"
+                    borderRadius="md"
+                    p="2"
+                    _hover={{
+                        bgGradient: 'linear(to-r, red.500, yellow.500)',
+                    }}
+                    bgGradient="linear(to-r, blue.500, orange.500)"
+                >
+                    Register
+                </Button>
             </form>
-        </div>
+        </Box>
     );
 };
 
 export default RegisterForm;
-

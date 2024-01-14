@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
+import { Box, Button, Input, FormControl, FormLabel } from "@chakra-ui/react";
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -13,21 +14,32 @@ const LoginForm = () => {
     };
 
     return (
-        <div>
+        <Box maxW="400px" mx="auto">
             <form onSubmit={handleLogin}>
-            <label htmlFor="email">Email</label>
-            <input id="email" name="email" type="email" />
-            <label htmlFor="password">Password</label>
-            <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="off"
-            />
-
-            <button type="submit">Login</button>
+                <FormControl id="email" mb={4}>
+                    <FormLabel>Email</FormLabel>
+                    <Input type="email" name="email" />
+                </FormControl>
+                <FormControl id="password" mb={4}>
+                    <FormLabel>Password</FormLabel>
+                    <Input type="password" name="password" autoComplete="off" />
+                </FormControl>
+                <Button
+                    type="submit"
+                    colorScheme="blue"
+                    size="lg"
+                    w="100%"
+                    borderRadius="md"
+                    p="2"
+                    _hover={{
+                        bgGradient: 'linear(to-r, red.500, yellow.500)',
+                    }}
+                    bgGradient="linear(to-r, blue.500, orange.500)"
+                >
+                    Login
+                </Button>
             </form>
-        </div>
+        </Box>
     );
 };
 
